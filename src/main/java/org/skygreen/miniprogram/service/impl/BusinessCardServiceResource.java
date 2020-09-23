@@ -87,7 +87,7 @@ public class BusinessCardServiceResource implements IBusinessCardService {
     var id = sessionToUserId(session); // Could be unavailable
     var openid = sessionToOpenid(session); // Always available
 
-    User user = null;
+    User user;
     if (!id.equals(-1)) {
       user = userRepository.findUserById(id);
     } else {
