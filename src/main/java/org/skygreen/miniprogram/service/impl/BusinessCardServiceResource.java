@@ -1,6 +1,5 @@
 package org.skygreen.miniprogram.service.impl;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import javax.enterprise.context.ApplicationScoped;
@@ -20,13 +19,12 @@ import org.skygreen.miniprogram.entity.User;
 import org.skygreen.miniprogram.service.IBusinessCardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Service
 @ApplicationScoped
 public class BusinessCardServiceResource implements IBusinessCardService {
+
   public static final Logger log = LoggerFactory.getLogger(BusinessCardServiceResource.class);
 
   @Inject
@@ -38,7 +36,8 @@ public class BusinessCardServiceResource implements IBusinessCardService {
   @Inject
   MiniprogramProperties miniprogramProperties;
 
-  private Map<String, LoginCodeDto> sessionMap = new HashMap<>();
+  @Inject
+  private Map<String, LoginCodeDto> sessionMap;
 
   private boolean isSessionValid(String session) {
     return sessionMap.containsKey(session);
