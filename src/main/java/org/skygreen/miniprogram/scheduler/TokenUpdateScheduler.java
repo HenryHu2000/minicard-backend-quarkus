@@ -16,7 +16,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 @ApplicationScoped
 public class TokenUpdateScheduler {
-  public static final Logger log = LoggerFactory.getLogger(TokenUpdateScheduler.class);
+  public static final Logger log =
+      LoggerFactory.getLogger(TokenUpdateScheduler.class);
 
   @Inject
   MiniprogramProperties miniprogramProperties;
@@ -27,8 +28,10 @@ public class TokenUpdateScheduler {
 
   @Scheduled(fixedRate = TIME_RATE)
   public void updateAccessToken() {
-    var url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="
-        + miniprogramProperties.getAppid() + "&secret=" + miniprogramProperties.getSecret();
+    var url =
+        "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="
+            + miniprogramProperties.getAppid() + "&secret="
+            + miniprogramProperties.getSecret();
 
     Client client = ClientBuilder.newBuilder().build();
     WebTarget target = client.target(url);

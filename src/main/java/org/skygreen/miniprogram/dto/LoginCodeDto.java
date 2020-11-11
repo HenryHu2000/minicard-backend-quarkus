@@ -31,7 +31,8 @@ public class LoginCodeDto {
 
   @Override
   public String toString() {
-    return String.format("{\"session_key\":\"%s\",\"openid\":\"%s\"}", sessionKey, openid);
+    return String.format("{\"session_key\":\"%s\",\"openid\":\"%s\"}",
+        sessionKey, openid);
   }
 
 }

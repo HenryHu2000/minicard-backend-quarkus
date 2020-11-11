@@ -17,7 +17,8 @@ import org.slf4j.LoggerFactory;
 @Path("/miniprogram")
 public class MiniprogramController {
 
-  public static final Logger log = LoggerFactory.getLogger(MiniprogramController.class);
+  public static final Logger log =
+      LoggerFactory.getLogger(MiniprogramController.class);
 
   @Inject
   IBusinessCardService businessCardService;
@@ -48,7 +49,8 @@ public class MiniprogramController {
   @POST
   @Path("/set")
   @Produces("application/json")
-  public Response setUser(@QueryParam("session") String session, @Form UserForm form) {
+  public Response setUser(@QueryParam("session") String session,
+      @Form UserForm form) {
     User user = businessCardService.setUser(session, form);
     return createResponse(user);
   }

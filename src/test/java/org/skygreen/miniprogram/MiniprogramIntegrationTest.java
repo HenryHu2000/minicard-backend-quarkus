@@ -68,10 +68,11 @@ public class MiniprogramIntegrationTest {
     var user = businessCardService.setUser(TEST_SESSION_1, userForm);
     var id = user.getId();
 
-    given().queryParam("session", TEST_SESSION_1).when().get("getid").then().statusCode(200)
-        .body(is(id.toString()));
+    given().queryParam("session", TEST_SESSION_1).when().get("getid").then()
+        .statusCode(200).body(is(id.toString()));
 
-    given().queryParam("session", TEST_SESSION_INVALID).when().get("getid").then().statusCode(403);
+    given().queryParam("session", TEST_SESSION_INVALID).when().get("getid")
+        .then().statusCode(403);
   }
 
   @Test
@@ -86,21 +87,23 @@ public class MiniprogramIntegrationTest {
     var user2 = businessCardService.setUser(TEST_SESSION_2, userForm2);
     var id2 = user2.getId();
 
-    given().queryParam("id", id1).when().get("get").then().statusCode(200).body("name",
-        is(TEST_NAME_1));
+    given().queryParam("id", id1).when().get("get").then().statusCode(200)
+        .body("name", is(TEST_NAME_1));
 
-    given().queryParam("id", id2).when().get("get").then().statusCode(200).body("name",
-        is(TEST_NAME_2));
+    given().queryParam("id", id2).when().get("get").then().statusCode(200)
+        .body("name", is(TEST_NAME_2));
 
     given().queryParam("id", 0).when().get("get").then().statusCode(403);
   }
 
   @Test
   void testSetUserEndpoint() {
-    given().queryParam("session", TEST_SESSION_1).formParam("name", TEST_NAME_1).when().post("set")
-        .then().statusCode(200).body("name", is(TEST_NAME_1));
+    given().queryParam("session", TEST_SESSION_1).formParam("name", TEST_NAME_1)
+        .when().post("set").then().statusCode(200)
+        .body("name", is(TEST_NAME_1));
 
-    given().queryParam("session", TEST_SESSION_INVALID).when().post("set").then().statusCode(403);
+    given().queryParam("session", TEST_SESSION_INVALID).when().post("set")
+        .then().statusCode(403);
 
     given().get("set").then().statusCode(405);
   }
@@ -117,7 +120,8 @@ public class MiniprogramIntegrationTest {
 
     given().queryParam("id", -1).when().get("getcode").then().statusCode(403);
 
-    given().queryParam("id", id + 1).when().get("getcode").then().statusCode(403);
+    given().queryParam("id", id + 1).when().get("getcode").then()
+        .statusCode(403);
   }
 
 }

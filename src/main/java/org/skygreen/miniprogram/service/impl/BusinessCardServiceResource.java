@@ -25,7 +25,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ApplicationScoped
 public class BusinessCardServiceResource implements IBusinessCardService {
 
-  public static final Logger log = LoggerFactory.getLogger(BusinessCardServiceResource.class);
+  public static final Logger log =
+      LoggerFactory.getLogger(BusinessCardServiceResource.class);
 
   @Inject
   AccessToken accessToken;
@@ -57,7 +58,8 @@ public class BusinessCardServiceResource implements IBusinessCardService {
   private Integer sessionToUserId(String session) {
     var openid = sessionToOpenid(session);
     User user = userRepository.findUserByOpenid(openid);
-    var id = (user != null) ? user.getId() : -1; // Return -1 when user is not recorded
+    var id = (user != null) ? user.getId() : -1; // Return -1 when user is not
+                                                 // recorded
     return id;
   }
 
@@ -144,9 +146,10 @@ public class BusinessCardServiceResource implements IBusinessCardService {
 
   @Override
   public String loginUser(String jsCode) {
-    var url = "https://api.weixin.qq.com/sns/jscode2session?grant_type=authorization_code&appid="
-        + miniprogramProperties.getAppid() + "&secret=" + miniprogramProperties.getSecret()
-        + "&js_code=" + jsCode;
+    var url =
+        "https://api.weixin.qq.com/sns/jscode2session?grant_type=authorization_code&appid="
+            + miniprogramProperties.getAppid() + "&secret="
+            + miniprogramProperties.getSecret() + "&js_code=" + jsCode;
 
     Client client = ClientBuilder.newBuilder().build();
     WebTarget target = client.target(url);
